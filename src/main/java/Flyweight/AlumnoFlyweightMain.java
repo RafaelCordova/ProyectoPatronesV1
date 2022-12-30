@@ -11,13 +11,15 @@ public class AlumnoFlyweightMain {
     static Scanner entrada = new Scanner(System.in);
     public static List<AlumnoFlyweight> alumnosFlyweight = new LinkedList<>();
 
-    public static void test() {
+    public static void main(String[] args) {
 
-        //System.out.println(p.operacionAbreviatura("BOLIVIA"));
+
+        Scanner entrada = new Scanner(System.in);
+
         int opc;
-        System.out.println("=======REGISTRO DE CLIENTES CON PATRON FLYWEIGHT========");
-        System.out.println("1. REGISTRAR ALUMNO");
-        System.out.println("2. MOSTRAR  ALUMNOS");
+        System.out.println("=======REGISTRO DE NOTAS CON PATRON FLYWEIGHT========");
+        System.out.println("1. REGISTRAR NOTAS");
+        System.out.println("2. MOSTRAR  NOTAS");
         System.out.println("3. SALIR");
         do {
             System.out.print("Ingresa tu opcion :");

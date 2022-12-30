@@ -2,32 +2,36 @@ package Flyweight;
 
 import Modelos.Alumno;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class AbreviaturasFlyweightFactory extends Alumno {
 
+
     private static HashMap<String, String> cacheAbreviaturas = new HashMap<String, String>();
 
     public AbreviaturasFlyweightFactory() { }
 
-    public static String getOperacionAbreviatura(String nota) {
+    public static ArrayList<String> getOperacionAbreviatura(ArrayList<String> nota) {
         HashMap<String, String> abreviaturaNota = AbreviaturasFlyweightFactory.cacheAbreviaturas;
         AbreviaturasFlyweightFactory obj = new AbreviaturasFlyweightFactory();
         obj.cargaMemoriaCache();
-        String nota_letra = "";
+        ArrayList<String> nota_letra = null;
         for (Map.Entry<String, String> entry : abreviaturaNota.entrySet()) {
             String clave = entry.getKey();
             String notaAbreviada = entry.getValue();
-
-            if (clave.equalsIgnoreCase(nota)) {
-                nota_letra = notaAbreviada;
-                return nota_letra;
+            for(int i=0;i<nota.size();i++) {
+                if (nota.get(i).equalsIgnoreCase(clave)) {
+                    nota.set(i, notaAbreviada) ;
+                    //nota_letra = String.valueOf(nota.charAt(0)) + String.valueOf(nota.charAt(1));
+                   // cacheAbreviaturas.put(nota,nota_letra);
+                }
             }
+
         }
-        nota_letra = String.valueOf(nota.charAt(0)) + String.valueOf(nota.charAt(1));
-        cacheAbreviaturas.put(nota,nota_letra);
-        return nota_letra;
+
+        return nota;
     }
 
     public static HashMap<String, String> getCacheAbreviaturas() {

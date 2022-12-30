@@ -10,7 +10,6 @@ import java.util.*;
 public class Alumno extends Persona {
 
     private String codigo_alumno;
-    private String nota;
 
     private ArrayList<String> notas;
 
@@ -106,11 +105,8 @@ public class Alumno extends Persona {
     @Override
     public String toString() {
         return "Alumno{" +
-                "code_alumno='" + codigo_alumno + '\'' +
-                ", cursos=" + notas +
-                ", dni='" + dni + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
+                "codigo_alumno='" + codigo_alumno + '\'' +
+                ", notas=" + notas +
                 '}';
     }
 }

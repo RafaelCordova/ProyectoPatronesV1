@@ -1,15 +1,8 @@
 
 package Principal;
 //CLASE PARA CONECTARNOS A LA BD
-import Controladores.AlumnoController;
-import Flyweight.AlumnoFlyweightMain;
 import Modelos.*;
-import BD_Mongo.*;
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.DBCursor;
 import BD_Mongo.ConexionPatronSingleton;
-import com.mongodb.MongoClient;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -48,8 +41,8 @@ public class PrincipalColegio {
                 }
                 switch (opc) {
                     case 2:
-                       AlumnoController.ingresarAlumno(alumnos);
-                        AlumnoFlyweightMain.test();
+                       //AlumnoController.ingresarAlumno(alumnos);
+                        //AlumnoFlyweightMain.test();
                         break;
                 }
             }while (opc!=4);

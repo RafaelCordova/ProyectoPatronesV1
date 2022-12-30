@@ -49,7 +49,7 @@ public class AlumnoController {
         nota = entrada.next();
 
             for(int i=0 ; i<num_nota ; i++){
-                System.out.print("Ingrese materia "+(i+1)+":");
+                System.out.print("Ingrese notas "+(i+1)+":");
                 aux_materias = entrada.next();
                 notas.add(aux_materias);
                                                }
