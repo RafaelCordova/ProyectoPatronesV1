@@ -1,7 +1,8 @@
 
 package Principal;
 //CLASE PARA CONECTARNOS A LA BD
-import Controladores.ProfesorController;
+import Controladores.AlumnoController;
+import Flyweight.AlumnoFlyweightMain;
 import Modelos.*;
 import BD_Mongo.*;
 import com.mongodb.DB;
@@ -19,7 +20,7 @@ public class PrincipalColegio {
 
         Scanner entrada = new Scanner(System.in);
 
-        ArrayList<Profesor> profesores = new ArrayList<>();
+        ArrayList<Alumno> alumnos = new ArrayList<>();
        // Controladores.ProfesorController.ingresarDocentes(profesores);
 
         try {
@@ -41,8 +42,14 @@ public class PrincipalColegio {
 
                 switch (opc) {
                     case 1:
-                        ProfesorController.ingresarDocentes(profesores);
-                        ConexionPatronSingleton.collection.insert(profesores.get(profesores.size() - 1).toDBObjectProfesor());
+                        //ProfesorController.ingresarDocentes(profesores);
+                        ConexionPatronSingleton.collection.insert(alumnos.get(alumnos.size() - 1).toDBObjectAlumno());
+                        break;
+                }
+                switch (opc) {
+                    case 2:
+                       AlumnoController.ingresarAlumno(alumnos);
+                        AlumnoFlyweightMain.test();
                         break;
                 }
             }while (opc!=4);

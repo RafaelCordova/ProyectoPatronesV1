@@ -8,9 +8,9 @@ import java.util.ArrayList;
 
 import java.util.*;
 
-public class ProfesorController {
+public class AlumnoController {
 
-    public static void ingresarDocentes(ArrayList<Profesor>profesores){
+    public static void ingresarAlumno(ArrayList<Alumno> alumnos){
 
         Scanner entrada = new Scanner(System.in);
 
@@ -29,34 +29,35 @@ public class ProfesorController {
                 new ArrayList<>(List.of("TRIGONOMETRIA","ALGEBRA","FISICA"))));
          */
 
-        String dni, nombre,apellido, codigo;
-        int num_materias;
+        String dni, nombre,apellido, codigo_alumno, nota;
+        int num_nota;
 
-        ArrayList<String> materias = new ArrayList<>();
+        ArrayList<String> notas = new ArrayList<>();
         String aux_materias;
 
-        System.out.print("Digite DNI docente");
+        System.out.print("Digite DNI alumno");
         dni = entrada.next();
-        System.out.print("Ingrese nombre docente :");
+        System.out.print("Ingrese nombre alumno :");
         nombre = entrada.next();
-        System.out.print("Ingrese apellido docente :");
+        System.out.print("Ingrese apellido alumno :");
         apellido = entrada.next();
-        System.out.print("Ingrese codigo del profesor :");
-        codigo = entrada.next();
+        System.out.print("Ingrese codigo del alumno :");
+        codigo_alumno = entrada.next();
+        System.out.print("Ingrese cantidad de notasdel alumno :");
+        num_nota = entrada.nextInt();
+        System.out.print("Ingrese la nota del alumno :");
+        nota = entrada.next();
 
-        System.out.print("Cantidad de cursos que dicta :");
-        num_materias = entrada.nextInt();
-
-            for(int i=0 ; i<num_materias ; i++){
+            for(int i=0 ; i<num_nota ; i++){
                 System.out.print("Ingrese materia "+(i+1)+":");
                 aux_materias = entrada.next();
-                materias.add(aux_materias);
+                notas.add(aux_materias);
                                                }
-            profesores.add(new Profesor(dni,nombre,apellido,codigo,materias));
-                                                                    }
+            alumnos.add(new Alumno(dni,nombre,apellido,codigo_alumno,notas));
+    }
 
     //METODOS PARA ACTUALZIZAR, ELIMINAR Y MOSTRAR
-    public static void mostrarDocentes(){
+    public static void mostrarAlumnos(){
         DBCursor iterador = BD_Mongo.ConexionPatronSingleton.collection.find();
         int cantidad = (int) BD_Mongo.ConexionPatronSingleton.collection.getCount();
         try {

@@ -1,5 +1,6 @@
 package Modelos;
 
+import Flyweight.AlumnoFlyweight;
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import org.bson.types.ObjectId;
@@ -8,50 +9,62 @@ import java.util.*;
 
 public class Alumno extends Persona {
 
-    private String code_alumno;
-    private ArrayList<String> cursos;
+    private String codigo_alumno;
+    private String nota;
 
+    private ArrayList<String> notas;
+
+    private AlumnoFlyweight alumnoFlyweightAbreviado;
+    public AlumnoFlyweight getAlumnoFlyweightAbreviado() {
+        return alumnoFlyweightAbreviado;
+    }
+    public void setAlumf(Alumno alumno, AlumnoFlyweight alumf) {
+        this.alumnoFlyweightAbreviado = alumf;
+    }
     public Alumno() {
 
     }
 
-    public Alumno(String dni, String nombre, String apellido, String code_alumno, ArrayList<String> cursos) {
-        super(dni, nombre, apellido);
-        this.code_alumno = code_alumno;
-        this.cursos = cursos;
+    public Alumno(String dni, String nombre, String apellido, String codigo_alumno, ArrayList<String> notas) {
+        this.dni = dni;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.codigo_alumno = codigo_alumno;
+        this.notas = notas;
     }
 
-    public Alumno(String code_alumno, ArrayList<String> cursos) {
-        this.code_alumno = code_alumno;
-        this.cursos = cursos;
+    public Alumno(String codigo_alumno, ArrayList<String> notas) {
+        this.codigo_alumno = codigo_alumno;
+        this.notas = notas;
     }
 
     public Alumno(BasicDBObject colecAlumno){
         this.dni = colecAlumno.getString("dni");
         this.nombre = colecAlumno.getString("nombre");
         this.apellido = colecAlumno.getString("apellido");
-        this.code_alumno= colecAlumno.getString("code_alumno");
+        this.codigo_alumno= colecAlumno.getString("codigo_alumno");
 
-        BasicDBList listCursos = (BasicDBList) colecAlumno.get("cursos");
-        this.cursos = new ArrayList<String>();
+        BasicDBList listNotas = (BasicDBList) colecAlumno.get("notas");
+        this.notas = new ArrayList<String>();
 
-        for(Object curs : listCursos){
-            this.cursos.add(curs.toString());
-                                       }
+        for(Object listnota : listNotas){
+            this.notas.add(listnota.toString());
+        }
 
-                                          }
+    }
+    
 
     public BasicDBObject toDBObjectAlumno(){
 
         BasicDBObject dbObjectAlumno = new BasicDBObject();
 
-        String id_aux = new ObjectId().toString();
+        String dni_aux = new ObjectId().toString();
 
-        dbObjectAlumno.append("_id",id_aux);
+        dbObjectAlumno.append("dni",dni_aux);
         dbObjectAlumno.append("nombre",this.getNombre());
         dbObjectAlumno.append("apellido",this.getApellido());
-        dbObjectAlumno.append("code_alumno",this.getCode_alumno());
-        dbObjectAlumno.append("materias",this.getCursos());
+        dbObjectAlumno.append("codigo_alumno",this.getCodigo_alumno());
+        dbObjectAlumno.append("curso",this.getNotas());
         return dbObjectAlumno;
     }
 
@@ -74,27 +87,27 @@ public class Alumno extends Persona {
     }
 
 
-    public String getCode_alumno() {
-        return code_alumno;
+    public String getCodigo_alumno() {
+        return codigo_alumno;
     }
 
-    public void setCode_alumno(String code_alumno) {
-        this.code_alumno = code_alumno;
+    public void setCodigo_alumno(String codigo_alumno) {
+        this.codigo_alumno = codigo_alumno;
     }
 
-    public ArrayList<String> getCursos() {
-        return cursos;
+    public ArrayList<String> getNotas() {
+        return notas;
     }
 
-    public void setCursos(ArrayList<String> cursos) {
-        this.cursos = cursos;
+    public void setNotas(ArrayList<String> notas) {
+        this.notas = notas;
     }
 
     @Override
     public String toString() {
         return "Alumno{" +
-                "code_alumno='" + code_alumno + '\'' +
-                ", cursos=" + cursos +
+                "code_alumno='" + codigo_alumno + '\'' +
+                ", cursos=" + notas +
                 ", dni='" + dni + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
